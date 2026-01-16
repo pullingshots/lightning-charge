@@ -29,6 +29,7 @@ const getRateBitstamp = currency =>
 
 const getRateCoingecko = currency =>
   request.get(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=${enc(currency)}`)
+    .set('User-Agent','lightning-charge/0.4')
     .proxy(RATE_PROXY)
     .then(res => res.body.bitcoin[currency.toLowerCase()] || Promise.reject(`Unknown currency: ${currency}`))
 
